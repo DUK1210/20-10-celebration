@@ -105,8 +105,8 @@
             line-height: 1.4;
         }
 
-        /* YouTube Video Container */
-        .music-container {
+        /* Music Controls */
+        .music-controls {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -116,11 +116,10 @@
             padding: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            max-width: 300px;
             transition: all 0.3s ease;
         }
 
-        .music-container:hover {
+        .music-controls:hover {
             transform: scale(1.05);
         }
 
@@ -132,32 +131,50 @@
             text-align: center;
         }
 
-        .youtube-video {
-            width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            border: none;
+        .music-player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .music-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1001;
             background: linear-gradient(45deg, #ff6b6b, #ee5a24);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 10px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
 
         .music-toggle:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            cursor: pointer;
         }
 
         /* Hiá»‡u á»©ng trÃ¡i tim bay */
@@ -273,15 +290,10 @@
         }
 
         @media (max-width: 768px) {
-            .music-container {
+            .music-controls {
                 bottom: 10px;
                 right: 10px;
-                max-width: 250px;
                 padding: 10px;
-            }
-            
-            .youtube-video {
-                height: 150px;
             }
             
             .envelope {
@@ -329,23 +341,27 @@
         </button>
     </div>
     
-    <!-- Music Toggle Button -->
-    <button class="music-toggle" onclick="toggleMusic()" id="musicToggle">
-        <i class="fas fa-music"></i>
-    </button>
-    
-    <!-- YouTube Music Container -->
-    <div class="music-container hidden" id="musicContainer">
+    <!-- Music Controls -->
+    <div class="music-controls">
         <div class="music-title">ðŸŽµ Nháº¡c ná»n lÃ£ng máº¡n ðŸŽµ</div>
-        <iframe 
-            class="youtube-video"
-            src="https://www.youtube.com/embed/KOZiSO6HFHk?start=33&autoplay=0&mute=1&loop=1&playlist=KOZiSO6HFHk"
-            title="Nháº¡c lÃ£ng máº¡n 20-10"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
+        <div class="music-player">
+            <button class="music-toggle" onclick="toggleMusic()" id="musicToggle">
+                <i class="fas fa-play"></i>
+            </button>
+            <div class="volume-control">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+                <i class="fas fa-volume-up"></i>
+            </div>
+        </div>
     </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <!-- Fallback: Sá»­ dá»¥ng YouTube audio stream -->
+        <source src="https://www.youtube.com/watch?v=KOZiSO6HFHk&t=33s" type="audio/mpeg">
+    </audio>
 
     <script>
         // Táº¡o hiá»‡u á»©ng trÃ¡i tim bay
@@ -403,18 +419,40 @@
             }
         }
 
-        // Toggle nháº¡c
+        // Music controls
+        const music = document.getElementById("backgroundMusic");
+        const musicToggle = document.getElementById("musicToggle");
+        const volumeSlider = document.getElementById("volumeSlider");
+        let isPlaying = false;
+
         function toggleMusic() {
-            const musicContainer = document.getElementById("musicContainer");
-            const musicToggle = document.getElementById("musicToggle");
-            
-            if (musicContainer.classList.contains("hidden")) {
-                musicContainer.classList.remove("hidden");
-                musicToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+            if (isPlaying) {
+                music.pause();
+                musicToggle.innerHTML = '<i class="fas fa-play"></i>';
+                isPlaying = false;
             } else {
-                musicContainer.classList.add("hidden");
-                musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+                music.play().catch(e => {
+                    console.log("Auto-play prevented. User interaction required.");
+                    // Fallback: Sá»­ dá»¥ng YouTube audio
+                    loadYouTubeAudio();
+                });
+                musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+                isPlaying = true;
             }
+        }
+
+        // Volume control
+        volumeSlider.addEventListener("input", function() {
+            music.volume = this.value / 100;
+        });
+
+        // Load YouTube audio as fallback
+        function loadYouTubeAudio() {
+            // Táº¡o iframe áº©n Ä‘á»ƒ load YouTube audio
+            const iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = "https://www.youtube.com/embed/KOZiSO6HFHk?start=33&autoplay=1&mute=0&loop=1&playlist=KOZiSO6HFHk";
+            document.body.appendChild(iframe);
         }
 
         // Hiá»‡u á»©ng sparkle
