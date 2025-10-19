@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChÃºc Má»«ng 20-10</title>
+    <title>Chuc Mung 20-10</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <style>
@@ -47,13 +47,13 @@
     <div class="sparkle" style="bottom: 10%; right: 10%;">âœ¨</div>
     
     <div class="container">
-        <h1>ðŸ’• ChÃºc Má»«ng 20-10 ðŸ’•</h1>
-        <p>Gá»­i Ä‘áº¿n ngÆ°á»i yÃªu cá»§a anh</p>
+        <h1>ðŸ’• Chuc Mung 20-10 ðŸ’•</h1>
+        <p>Gui den nguoi yeu cua anh</p>
         
         <div class="envelope" id="envelope" onclick="openEnvelope()">
             <div class="card" id="card">
-                <h2>ðŸ’– Nháº¥n vÃ o trÃ¡i tim ðŸ’–</h2>
-                <p>Äá»ƒ xem video chÃºc má»«ng</p>
+                <h2>ðŸ’– Nhan vao trai tim ðŸ’–</h2>
+                <p>De xem video chuc mung</p>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
                     frameborder="0" 
                     allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin" 
-                    title="Video chÃºc má»«ng 20-10">
+                    title="Video chuc mung 20-10">
             </iframe>
         </div>
     </div>
@@ -105,13 +105,11 @@
             
             envelope.classList.add("opened");
             
-            // Hiá»‡n video thay vÃ¬ thiá»‡p
             setTimeout(() => {
                 videoContainer.classList.remove("hidden");
                 document.body.style.overflow = "hidden";
             }, 500);
             
-            // Táº¡o hiá»‡u á»©ng phÃ¡o hoa
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => { createHeart(); }, i * 100);
             }
@@ -133,7 +131,6 @@
         createSparkle();
         setInterval(createSparkle, 3000);
         
-        // ÄÃ³ng video khi báº¥m ngoÃ i
         document.getElementById("videoContainer").addEventListener("click", function(e) {
             if (e.target === this) {
                 closeVideo();
