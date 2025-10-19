@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>women's day</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap-grid.min.css"
         integrity="sha512-JQksK36WdRekVrvdxNyV3B0Q1huqbTkIQNbz1dlcFVgNynEMRl0F8OSqOGdVppLUDIvsOejhr/W5L3G/b3J+8w=="
@@ -554,6 +554,46 @@
             max-width: 100%;
             max-height: 100%;
             border-radius: 15px;
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .video-container iframe {
+                width: 100% !important;
+                height: 60vh !important;
+                max-width: 100%;
+            }
+            .formLetter {
+                padding: 10px !important;
+            }
+            .boxLetter {
+                width: 95% !important;
+                height: 90vh !important;
+                max-width: 95%;
+            }
+            .wrapperLetter {
+                height: 100% !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .video-container iframe {
+                width: 100% !important;
+                height: 50vh !important;
+            }
+            .boxLetter {
+                width: 98% !important;
+                height: 95vh !important;
+            }
+            .valentines {
+                transform: scale(0.8) !important;
+            }
+            .card {
+                transform: scale(0.8) !important;
+            }
+            .envelope {
+                transform: scale(0.8) !important;
+            }
         }
 
         .boxLetter .before {
