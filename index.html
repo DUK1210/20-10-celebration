@@ -31,11 +31,6 @@
         .envelope.opened:before { transform: rotate(45deg) translateY(-50px); }
         .card.revealed { transform: translateY(-20px); }
         .hidden { display: none; }
-        .music-controls { position: fixed; bottom: 20px; right: 20px; background: rgba(255,255,255,0.9); border-radius: 15px; padding: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-        .music-title { color: #2d3436; font-size: 0.9rem; font-weight: bold; margin-bottom: 10px; text-align: center; }
-        .music-player { display: flex; align-items: center; gap: 10px; }
-        .music-toggle { background: linear-gradient(45deg, #ff6b6b, #ee5a24); color: white; border: none; padding: 10px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
-        .volume-slider { width: 80px; height: 5px; border-radius: 5px; background: #ddd; outline: none; }
         @media (max-width: 768px) { h1 { font-size: 2rem; } .container { padding: 20px; } .envelope { width: 250px; height: 160px; } .envelope:before { width: 177px; height: 177px; top: -88px; left: 36px; } .card { width: 220px; height: 130px; top: 15px; left: 15px; } }
     </style>
 </head>
@@ -57,22 +52,6 @@
             </div>
         </div>
     </div>
-    
-    <div class="music-controls">
-        <div class="music-title">ðŸŽµ Nháº¡c ná»n lÃ£ng máº¡n ðŸŽµ</div>
-        <div class="music-player">
-            <button class="music-toggle" onclick="toggleMusic()" id="musicToggle"><i class="fas fa-play"></i></button>
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
-        </div>
-    </div>
-
-    <audio id="backgroundMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-    </audio>
-    
-    <audio id="openSound" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-    </audio>
 
     <script>
         function createHeart() {
@@ -104,10 +83,6 @@
         function openEnvelope() {
             const envelope = document.getElementById("envelope");
             const card = document.getElementById("card");
-            const openSound = document.getElementById("openSound");
-            
-            // PhÃ¡t Ã¢m thanh khi má»Ÿ
-            openSound.play().catch(e => console.log("Sound play prevented"));
             
             envelope.classList.add("opened");
             card.classList.add("revealed");
@@ -126,27 +101,6 @@
                 setTimeout(() => { createHeart(); }, i * 100);
             }
         }
-        
-        const music = document.getElementById("backgroundMusic");
-        const musicToggle = document.getElementById("musicToggle");
-        const volumeSlider = document.getElementById("volumeSlider");
-        let isPlaying = false;
-        
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                musicToggle.innerHTML = "<i class=\"fas fa-play\"></i>";
-                isPlaying = false;
-            } else {
-                music.play().catch(e => console.log("Auto-play prevented"));
-                musicToggle.innerHTML = "<i class=\"fas fa-pause\"></i>";
-                isPlaying = true;
-            }
-        }
-        
-        volumeSlider.addEventListener("input", function() {
-            music.volume = this.value / 100;
-        });
         
         function createSparkle() {
             const sparkles = document.querySelectorAll(".sparkle");
