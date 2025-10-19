@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -714,9 +714,9 @@
 
         <text dy="-2">
             <textPath style="font-family: fantasy;" xlink:href="#partialPath" startOffset="12">
-                🌹Happy Women's Day
-                🌹.........................................................................................................................................🌹From
-                With Love 20/10!🌹
+                ðŸŒ¹Happy Women's Day
+                ðŸŒ¹.........................................................................................................................................ðŸŒ¹From
+                With Love 20/10!ðŸŒ¹
             </textPath>
         </text>
 
@@ -853,10 +853,10 @@
             helperPoints.push(lerp(helperPoints[0], helperPoints[1], t));
             helperPoints.push(lerp(helperPoints[1], helperPoints[2], t));
 
-            // helper point 5 is where the first Bézier ends and where the second Bézier begins
+            // helper point 5 is where the first BÃ©zier ends and where the second BÃ©zier begins
             helperPoints.push(lerp(helperPoints[3], helperPoints[4], t));
 
-            // points for the dynamic bézier
+            // points for the dynamic bÃ©zier
             let firstBezier = [
                 points[0],
                 helperPoints[0],
@@ -1130,7 +1130,7 @@
         // .textLetter text h2
         let indexText = 0;
         let textLetter = document.querySelector('.textLetter h2');
-        const textLetterH2 = "Gửi cậu!";
+        const textLetterH2 = "Gá»­i cáº­u!";
         let timoutTextLetter;
 
         function textCharLetter() {
@@ -1148,17 +1148,17 @@
         }
         function funcTimeoutLetter() {
             indexText = 0; // Reset indexText
-            textLetter.textContent = ''; // Xóa nội dung hiện tại của textLetter
+            textLetter.textContent = ''; // XÃ³a ná»™i dung hiá»‡n táº¡i cá»§a textLetter
             clearInterval(timoutTextLetter);
             timoutTextLetter = setInterval(() => {
                 textCharLetter();
             }, 200)
         }
 
-        // chữ của thư bạn muốn gửi
+        // chá»¯ cá»§a thÆ° báº¡n muá»‘n gá»­i
         let indexTextContent = 0;
         let textLetterContent = document.querySelector('.contentLetter');
-        const textLetterP = "Hôm nay là ngày 20/10. Xin gửi lời chúc tới người tớ yêu thương nhất. Luôn vui vẻ, luôn hạnh phúc và luôn may mắn trong cuộc sống, ngày càng xinh đẹp. Xin gửi tất cả lời chúc tốt đẹp đến với cậu. Love You💗";
+        const textLetterP = "HÃ´m nay lÃ  ngÃ y 20/10. Xin gá»­i lá»i chÃºc tá»›i ngÆ°á»i tá»› yÃªu thÆ°Æ¡ng nháº¥t. LuÃ´n vui váº», luÃ´n háº¡nh phÃºc vÃ  luÃ´n may máº¯n trong cuá»™c sá»‘ng, ngÃ y cÃ ng xinh Ä‘áº¹p. Xin gá»­i táº¥t cáº£ lá»i chÃºc tá»‘t Ä‘áº¹p Ä‘áº¿n vá»›i cáº­u. Love YouðŸ’—";
         let timoutTextLetterContent;
         function textCharLetterContent() {
             if (indexTextContent < textLetterP.length) {
@@ -1173,7 +1173,7 @@
         }
         function funcTimeoutLetterContent() {
             indexTextContent = 0; // Reset indexTextContent
-            textLetterContent.textContent = ''; // Xóa nội dung hiện tại của textLetter
+            textLetterContent.textContent = ''; // XÃ³a ná»™i dung hiá»‡n táº¡i cá»§a textLetter
             clearInterval(timoutTextLetterContent);
             timoutTextLetterContent = setInterval(() => {
                 textCharLetterContent();
